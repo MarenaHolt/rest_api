@@ -2,8 +2,7 @@ package com.selenoid;
 
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 
@@ -14,7 +13,6 @@ public class StatusTests {
     2. Get response { total: 20, used: 0, queued: 0, pending: 0, browsers: ...
     3. Check total is 20
      */
-
     @Test
     void checkTotalMini() {
         get("https://selenoid.autotests.cloud/status")
@@ -34,11 +32,11 @@ public class StatusTests {
     @Test
     void checkTotalWithLogs() {
         given()
-                .log().all()
+                .log().all() //залогировали запрос
                 .when()
                 .get("https://selenoid.autotests.cloud/status")
                 .then()
-                .log().all()
+                .log().all() //залогировали ответ
                 .body("total", is(20));
     }
 
