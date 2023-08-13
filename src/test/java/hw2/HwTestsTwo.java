@@ -4,8 +4,6 @@ import hw2.models.CreateUserRequestModel;
 import hw2.models.CreateUserResponseModel;
 import hw2.models.SingleUserResponseModel;
 import hw2.models.UserDataResponseModel;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +13,6 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HwTestsTwo {
-
-    @BeforeAll
-    static public void setUp() {
-        RestAssured.baseURI = "https://reqres.in";
-    }
-
     @Test
     @Tag("all")
     void testCheckFirstEmailInList() {
