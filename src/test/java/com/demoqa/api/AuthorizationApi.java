@@ -7,7 +7,6 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class AuthorizationApi {
-
     public LoginResponseModel login(CredentialsModel credentials){
         return given()
                 .body(credentials)

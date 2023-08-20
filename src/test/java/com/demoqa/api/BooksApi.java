@@ -8,6 +8,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class BooksApi {
+
     public void deleteAllBooks(LoginResponseModel loginResponse) {
         given()
                 .contentType(JSON)
@@ -29,8 +30,6 @@ public class BooksApi {
                 .then()
                 .statusCode(201);
     }
-
-
 
     public void deleteBook(LoginResponseModel loginResponse, DeleteBookModel deleteBook) {
         given()

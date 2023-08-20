@@ -1,9 +1,13 @@
 package com.demoqa.tests;
 
+import com.demoqa.api.AuthorizationApi;
+import com.demoqa.api.BooksApi;
+import com.demoqa.helpers.MainTestMethods;
 import com.demoqa.models.AddBooksListModel;
 import com.demoqa.models.DeleteBookModel;
 import com.demoqa.models.IsbnModel;
 import com.demoqa.models.LoginResponseModel;
+import com.demoqa.pages.ProfilePage;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
@@ -16,6 +20,11 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.demoqa.tests.TestData.credentials;
 
 public class ProfileBooksListTests extends TestBase {
+
+    MainTestMethods mainTestMethods = new MainTestMethods();
+    AuthorizationApi authorizationApi = new AuthorizationApi();
+    BooksApi booksApi = new BooksApi();
+    ProfilePage profilePage = new ProfilePage();
 
     /*
     этот тест не трогаю, остается для примера
@@ -49,15 +58,14 @@ public class ProfileBooksListTests extends TestBase {
     void deleteBookFromProfileTest() {
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
         booksApi.deleteAllBooks(loginResponse);
-        AddBooksListModel addBooksListModel = createBookList(loginResponse, "9781449325862");
-        booksApi.addBook(loginResponse, createBookList(loginResponse, addBooksListModel.getCollectionOfIsbns().get(0).getIsbn()));
+        AddBooksListModel addBooksListModel = mainTestMethods.createBookList(loginResponse, "9781449325862");
+        booksApi.addBook(loginResponse, mainTestMethods.createBookList(loginResponse, addBooksListModel.getCollectionOfIsbns().get(0).getIsbn()));
 
         booksApi.deleteBook(loginResponse, new DeleteBookModel(addBooksListModel.getCollectionOfIsbns().get(0).getIsbn(), loginResponse.getUserId()));
 
-        openProfilePage(loginResponse);
+        mainTestMethods.openProfilePage(loginResponse);
 
-        profilePage.checkUsername(loginResponse.getUsername());
+        profilePage.checkUsername(loginResponse.getUserName());
         profilePage.noRowsCheck();
-
     }
 }

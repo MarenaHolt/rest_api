@@ -1,5 +1,6 @@
 package com.demoqa.tests;
 
+import com.demoqa.api.AuthorizationApi;
 import com.demoqa.models.LoginResponseModel;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -10,10 +11,8 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.demoqa.tests.TestData.credentials;
 
-
 public class LoginTests extends TestBase {
-
-
+    AuthorizationApi authorizationApi = new AuthorizationApi();
     @Test
     void successfulLoginTest() {
         LoginResponseModel loginResponse = authorizationApi.login(credentials);
@@ -25,6 +24,5 @@ public class LoginTests extends TestBase {
 
         open("/profile");
         $("#userName-value").shouldHave(text(credentials.getUserName()));
-
     }
 }

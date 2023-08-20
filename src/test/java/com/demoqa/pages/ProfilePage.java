@@ -6,11 +6,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ProfilePage {
-
-    SelenideElement userNameValue = $("#userName-value"),
-    noRows = $("[class=rt-noData]");
-
-
+    private SelenideElement userNameValue = $("#userName-value"),
+            noRows = $("[class=rt-noData]");
 
     public ProfilePage checkUsername(String userName) {
         userNameValue.shouldHave(text(userName));
@@ -21,5 +18,4 @@ public class ProfilePage {
         noRows.should(exist);
         return this;
     }
-
 }

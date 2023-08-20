@@ -6,5 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DeleteBookModel {
-    String isbn, userId;
+
+    private String isbn, userId;
+
 }

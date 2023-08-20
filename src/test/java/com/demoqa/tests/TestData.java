@@ -9,5 +9,4 @@ public class TestData {
 
     public static CredentialsModel credentials = new CredentialsModel(login, password);
 
-
 }
